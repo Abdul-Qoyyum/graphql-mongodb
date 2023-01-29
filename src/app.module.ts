@@ -5,6 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Lesson } from './lesson/lesson.entity';
 import { LessonModule } from './lesson/lesson.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { StudentModule } from './student/student.module';
+import { Student } from './student/student.entity';
 
 @Module({
   imports: [
@@ -20,7 +22,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         useUnifiedTopology: true,
         synchronize: true,
         useNewUrlParser: true,
-        entities: [Lesson],
+        entities: [Lesson, Student],
       }),
     }),
     GraphQLModule.forRoot({
@@ -28,6 +30,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       driver: ApolloDriver,
     }),
     LessonModule,
+    StudentModule,
   ],
   // controllers: [],
   // providers: [],
